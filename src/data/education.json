@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "school": "Stanford University",
+    "degree": "Master of Science in Computer Science",
+    "duration": "2020 - 2022",
+    "logo": "🎓",
+    "relevantCourses": [
+      "Machine Learning",
+      "Distributed Systems",
+      "Machine Learning",
+      "Distributed Systems",
+      "Machine Learning",
+      "Distributed Systems",
+      "Machine Learning",
+      "Distributed Systems",
+      "Advanced Algorithms",
+      "Machine Learning",
+      "Distributed Systems",
+      "Machine Learning",
+      "Distributed Systems",
+      "Machine Learning",
+      "Distributed Systems",
+      "Machine Learning",
+      "Distributed Systems",
+      "Advanced Algorithms"
+    ],
+    "achievements": [
+      "Dean's List all semesters",
+      "Published research paper on distributed computing"
+    ]
+  },
+  {
+    "id": 2,
+    "school": "MIT",
+    "degree": "Bachelor of Science in Computer Engineering",
+    "duration": "2016 - 2020",
+    "logo": "🏛️"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Distributed Cache System",
+    "tags": ["Systems", "Performance", "Backend"],
+    "description": "Built a distributed caching layer that reduced database load by 60% and improved API response times by 40%. Implemented consistent hashing and replication strategies.",
+    "technologies": ["Go", "Redis", "Docker", "Kubernetes"],
+    "github": "https://github.com/yourusername/distributed-cache",
+    "logo": "⚡"
+  },
+  {
+    "id": 2,
+    "name": "AI Code Assistant",
+    "tags": ["AI/ML", "Full-Stack", "Developer Tools"],
+    "description": "Developed an AI-powered code completion tool using transformer models. Integrated with VS Code and supports multiple programming languages.",
+    "technologies": ["Python", "TypeScript", "React", "OpenAI"],
+    "github": "https://github.com/yourusername/ai-code-assistant",
+    "logo": "🤖"
+  },
+  {
+    "id": 3,
+    "name": "Real-time Analytics Dashboard",
+    "tags": ["Full-Stack", "Data Visualization", "Real-time"],
+    "description": "Created a real-time analytics platform processing 10K+ events per second. Features interactive charts, live data streaming, and custom alerting.",
+    "technologies": ["React", "WebSocket", "Node.js", "InfluxDB"],
+    "github": "https://github.com/yourusername/analytics-dashboard",
+    "logo": "📊"
+  },
+  {
+    "id": 4,
+    "name": "Cloud Infrastructure Automation",
+    "tags": ["DevOps", "Infrastructure", "Automation"],
+    "description": "Automated cloud infrastructure deployment with infrastructure-as-code. Reduced deployment time from hours to minutes with zero-downtime deployments.",
+    "technologies": ["Terraform", "AWS", "Python", "GitHub Actions"],
+    "github": "https://github.com/yourusername/cloud-automation",
+    "logo": "☁️"
+  }
+]

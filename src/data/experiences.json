@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "company": "NetApp",
+    "tags": ["Backend", "Systems Engineering", "Storage", "Performance Optimization"],
+    "role": "Software Engineer",
+    "duration": "2021 - 2024",
+    "description": "Built enterprise storage systems handling petabytes of data. Designed and implemented distributed caching mechanisms that improved read performance by 40%.",
+    "technologies": ["C++", "Python", "Kubernetes", "Linux"],
+    "logo": "💾"
+  },
+  {
+    "id": 2,
+    "company": "Tech Startup",
+    "tags": ["Backend", "Fintech"],
+    "role": "Backend Developer",
+    "duration": "2020 - 2021",
+    "description": "Developed REST APIs and microservices for a fintech platform. Implemented authentication systems and payment processing pipelines.",
+    "technologies": ["Node.js", "PostgreSQL", "Docker", "AWS"],
+    "logo": "🚀"
+  },
+  {
+    "id": 3,
+    "company": "University Research Lab",
+    "tags": ["Machine Learning"],
+    "role": "Research Assistant",
+    "duration": "2019 - 2020",
+    "description": "Conducted research on machine learning algorithms for natural language processing. Published findings in academic conferences.",
+    "technologies": ["Python", "TensorFlow", "NLP", "Research"],
+    "logo": "🔬"
+  }
+]
