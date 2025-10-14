@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import profileImage from '../data/1.JPG';
 
 const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -55,10 +56,10 @@ const Home = () => {
           className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-20"
         >
           <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white p-1 shadow-2xl">
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#ba7893] to-[#e9b6b5] flex items-center justify-center overflow-hidden">
+            <div className="w-full h-full rounded-full overflow-hidden">
               <img
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ananya"
-                alt="Profile"
+                src={profileImage}
+                alt="Ananya's Profile"
                 className="w-full h-full object-cover"
               />
             </div>

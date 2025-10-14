@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import profileImage from '../data/3.JPG';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -49,22 +50,19 @@ const Contact = () => {
         <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#ba7893]/30 overflow-hidden">
           <div className="grid md:grid-cols-5 gap-0">
             {/* Right Side - Image (2 columns) - Shows first on mobile */}
-            <div className="md:col-span-2 md:order-2 bg-gradient-to-br from-[#ba7893]/10 to-[#5a6cb8]/10 flex items-center justify-center p-6">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                className="w-48 h-48 rounded-2xl overflow-hidden shadow-lg border-2 border-white"
-              >
+            <div className="md:col-span-2 order-1 md:order-2 bg-gradient-to-br from-[#ba7893]/10 to-[#5a6cb8]/10 flex items-center justify-center p-0 h-64 md:h-auto">
+              <div className="w-full h-full relative overflow-hidden">
                 <img
-                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ananya&background=%23ba7893"
-                  alt="Ananya"
+                  src={profileImage}
+                  alt="Ananya's Profile"
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: '50% 30%' }}
                 />
-              </motion.div>
+              </div>
             </div>
 
             {/* Left Side - Contact Form (3 columns) - Shows second on mobile */}
-            <div className="md:col-span-3 md:order-1 p-6 md:p-8">
+            <div className="md:col-span-3 order-2 md:order-1 p-6 md:p-8">
               <h2 className="text-3xl md:text-4xl font-bold text-[#342d66] mb-1">Get In Touch</h2>
 
               <p className="text-gray-600 text-sm mb-6">
@@ -92,7 +90,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-[#ba7893] focus:outline-none transition-colors bg-white/60 text-sm"
-                    placeholder="your.email@example.com"
+                    placeholder="connect.with.me.ananya@gmail.com"
                   />
                 </div>
 
@@ -132,7 +130,7 @@ const Contact = () => {
               {/* Social Links */}
               <div className="flex gap-3 mt-6 justify-center">
                 <motion.a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/cheesken"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, rotate: 360 }}
@@ -145,7 +143,7 @@ const Contact = () => {
                 </motion.a>
 
                 <motion.a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://linkedin.com/in/ananya-makwana"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, rotate: 360 }}

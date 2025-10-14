@@ -7,6 +7,7 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
   const [technologies, setTechnologies] = useState([]);
   const [skills, setSkills] = useState([]);
   const filterRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     // Extract technologies and skills separately
@@ -27,23 +28,33 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
     onFilterChange(getFilteredAndSorted());
   }, [selectedFilters, data]);
 
-  // Handle click outside to close filter
+  // Handle click outside to close filter - enhanced for mobile
   useEffect(() => {
+    if (!showFilters) return;
+
     const handleClickOutside = (event) => {
-      if (filterRef.current && !filterRef.current.contains(event.target)) {
-        setShowFilters(false);
+      // Prevent closing if clicking inside the filter panel or button
+      if (filterRef.current?.contains(event.target) || buttonRef.current?.contains(event.target)) {
+        return;
       }
+
+      // Close the filter
+      setShowFilters(false);
     };
 
-    if (showFilters) {
-      // Use capture phase to catch clicks before they're handled by other elements
+    // Small delay to prevent immediate closing when opening
+    const timer = setTimeout(() => {
+      // Use capture phase and multiple event types for better mobile support
       document.addEventListener('mousedown', handleClickOutside, true);
-      document.addEventListener('touchstart', handleClickOutside, true);
-    }
+      document.addEventListener('touchstart', handleClickOutside, { passive: true, capture: true });
+      document.addEventListener('pointerdown', handleClickOutside, true);
+    }, 150);
 
     return () => {
+      clearTimeout(timer);
       document.removeEventListener('mousedown', handleClickOutside, true);
       document.removeEventListener('touchstart', handleClickOutside, true);
+      document.removeEventListener('pointerdown', handleClickOutside, true);
     };
   }, [showFilters]);
 
@@ -82,10 +93,14 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
   };
 
   return (
-    <div ref={filterRef}>
+    <div className="relative">
       {/* Filter Button */}
       <motion.button
-        onClick={() => setShowFilters(!showFilters)}
+        ref={buttonRef}
+        onClick={(e) => {
+          e.stopPropagation();
+          setShowFilters(!showFilters);
+        }}
         className={`px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-1.5 text-xs font-semibold border border-gray-200 hover:border-[#ba7893]/40 ${buttonClassName}`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -98,14 +113,30 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
         )}
       </motion.button>
 
+      {/* Backdrop overlay for mobile - helps catch clicks */}
+      <AnimatePresence>
+        {showFilters && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-black/20 md:bg-transparent"
+            onClick={() => setShowFilters(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Filter Panel */}
       <AnimatePresence>
         {showFilters && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="absolute top-16 right-0 w-[90vw] max-w-md z-30 overflow-hidden"
+            ref={filterRef}
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed md:absolute top-20 md:top-16 right-4 md:right-0 w-[calc(100vw-2rem)] md:w-[90vw] max-w-md z-50"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-5 shadow-2xl border-2 border-[#ba7893]/30">
               <div className="flex items-center justify-between mb-4">

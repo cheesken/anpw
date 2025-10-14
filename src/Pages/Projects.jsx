@@ -158,23 +158,6 @@ const Projects = () => {
                 </p>
               </div>
 
-              {/* Tags */}
-              {selectedProject.tags && selectedProject.tags.length > 0 && (
-                <div className="mb-6">
-                  <h4 className="text-xl font-bold text-[#342d66] mb-3">Tags</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-[#5a6cb8]/25 to-[#ba7893]/25 text-[#342d66] border-2 border-[#5a6cb8]/40"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Technologies */}
               <div>
                 <h4 className="text-xl font-bold text-[#342d66] mb-3">Technologies</h4>

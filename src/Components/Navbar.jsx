@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const menuItems = [
     { name: 'Home', href: '#home' },
@@ -11,6 +13,52 @@ const Navbar = () => {
     { name: 'Education', href: '#education' },
     { name: 'Contact Me', href: '#contact' },
   ];
+
+  // Handle click outside to close menu
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleClickOutside = (event) => {
+      // Don't close if clicking inside menu or button
+      if (menuRef.current?.contains(event.target) || buttonRef.current?.contains(event.target)) {
+        return;
+      }
+
+      setIsMenuOpen(false);
+    };
+
+    // Small delay to prevent immediate closing when opening
+    const timer = setTimeout(() => {
+      document.addEventListener('mousedown', handleClickOutside, true);
+      document.addEventListener('touchstart', handleClickOutside, { passive: true, capture: true });
+      document.addEventListener('pointerdown', handleClickOutside, true);
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mousedown', handleClickOutside, true);
+      document.removeEventListener('touchstart', handleClickOutside, true);
+      document.removeEventListener('pointerdown', handleClickOutside, true);
+    };
+  }, [isMenuOpen]);
+
+  // Handle scroll to close menu
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const scrollContainer = document.querySelector('.snap-y');
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      setIsMenuOpen(false);
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      scrollContainer.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMenuOpen]);
 
   // Smooth scroll function
   const handleNavClick = (e, href) => {
@@ -51,7 +99,11 @@ const Navbar = () => {
 
         {/* Burger Menu */}
         <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          ref={buttonRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(!isMenuOpen);
+          }}
           className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center gap-1.5 hover:bg-white transition-colors"
           aria-label="Toggle menu"
         >
@@ -70,17 +122,29 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Backdrop for mobile */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm -z-10 md:bg-transparent"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-20 right-6 md:right-12 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden min-w-[200px]"
-            onMouseLeave={() => {
-              setTimeout(() => setIsMenuOpen(false), 1000);
-            }}
+            className="absolute top-20 right-6 md:right-12 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden min-w-[200px] z-10"
+            onClick={(e) => e.stopPropagation()}
           >
             {menuItems.map((item, index) => (
               <motion.a
