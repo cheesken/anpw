@@ -115,14 +115,14 @@ const Experience = () => {
         </motion.div>
       </motion.div>
 
-      {/* Expanded Card Overlay */}
+      {/* Expanded Card Overlay - Mobile Optimized (matching Education) */}
       <AnimatePresence>
         {selectedExperience && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 md:p-4"
             onClick={handleCloseOverlay}
           >
             <motion.div
@@ -130,81 +130,87 @@ const Experience = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-4 md:p-8 max-w-3xl w-full max-h-[85vh] md:max-h-[80vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
+              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-3xl w-[90%] max-h-[55vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Company Header */}
               <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
-                <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1">
+                <div className="w-14 h-14 md:w-24 md:h-24 rounded-xl md:rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1.5 md:p-3">
                   {isImagePath(selectedExperience.logo) ? (
                     <img
-                      src={import.meta.env.BASE_URL + selectedExperience.logo}
+                      src={selectedExperience.logo}
                       alt={`${selectedExperience.company} logo`}
                       className="w-full h-full object-contain"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        console.error('Failed to load image:', selectedExperience.logo);
-                      }}
                     />
                   ) : (
                     <span className="text-3xl md:text-5xl">{selectedExperience.logo}</span>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-2xl md:text-4xl font-bold text-[#342d66] mb-1 md:mb-2 leading-tight">
-                    {selectedExperience.company}
-                  </h3>
-                  <p className="text-lg md:text-2xl text-[#5a6cb8] font-bold mb-1 md:mb-2 leading-tight">
-                    {selectedExperience.role}
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <div className="h-1 w-8 md:w-10 bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] rounded-full" />
-                    <p className="text-sm md:text-lg text-gray-500 font-medium">
-                      {selectedExperience.duration}
+                  {selectedExperience.company && (
+                    <h3 className="text-xl md:text-4xl font-bold text-[#342d66] mb-0.5 md:mb-2 leading-tight">
+                      {selectedExperience.company}
+                    </h3>
+                  )}
+                  {selectedExperience.role && (
+                    <p className="text-base md:text-2xl text-[#5a6cb8] font-bold mb-0.5 md:mb-2 leading-tight">
+                      {selectedExperience.role}
                     </p>
-                  </div>
+                  )}
+                  {selectedExperience.duration && (
+                    <div className="flex items-center gap-2">
+                      <div className="h-0.5 md:h-1 w-6 md:w-10 bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] rounded-full" />
+                      <p className="text-xs md:text-lg text-gray-500 font-medium">
+                        {selectedExperience.duration}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Description */}
-              <div className="mb-4 md:mb-6">
-                <h4 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
-                  Description
-                </h4>
-                {Array.isArray(selectedExperience.description) ? (
-                  <ul className="space-y-2 md:space-y-3 text-gray-700 text-sm md:text-lg leading-relaxed">
-                    {selectedExperience.description.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 md:gap-3">
-                        <span className="text-[#ba7893] text-base md:text-xl mt-0.5 flex-shrink-0">
-                          •
-                        </span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-gray-700 text-sm md:text-lg leading-relaxed">
-                    {selectedExperience.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Technologies */}
-              <div>
-                <h4 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
-                  Technologies
-                </h4>
-                <div className="flex flex-wrap gap-2 md:gap-3">
-                  {selectedExperience.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              {selectedExperience.description && (
+                <div className="mb-4 md:mb-6">
+                  <h4 className="text-base md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
+                    Description
+                  </h4>
+                  {Array.isArray(selectedExperience.description) ? (
+                    <ul className="space-y-1.5 md:space-y-3 text-gray-700 text-xs md:text-lg leading-relaxed">
+                      {selectedExperience.description.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5 md:gap-3">
+                          <span className="text-[#5a6cb8] text-sm md:text-xl mt-0.5 flex-shrink-0">
+                            •
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-gray-700 text-xs md:text-lg leading-relaxed">
+                      {selectedExperience.description}
+                    </p>
+                  )}
                 </div>
-              </div>
+              )}
+
+              {/* Technologies - Pill badges */}
+              {selectedExperience.technologies && selectedExperience.technologies.length > 0 && (
+                <div>
+                  <h4 className="text-base md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
+                    Technologies
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5 md:gap-3">
+                    {selectedExperience.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-2.5 py-1 md:px-5 md:py-2.5 rounded-full text-xs md:text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Close hint */}
               <p className="text-center text-xs md:text-sm text-gray-500 mt-4 md:mt-8">

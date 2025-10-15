@@ -6,7 +6,7 @@
     "role": "Software Engineer",
     "duration": "Feb 2022 - Jan 2025",
     "description": [
-      "Led a team of two in the design, architecture, and implementation of a feature aimed at reducing system downtime caused by failed disks. This involved collaborating with appropriate stakeholders to identify business requirements and adhering to RAID best practices and storage principles.",
+      "Led a team of four in the design, architecture, and implementation of a feature aimed at reducing system downtime caused by failed disks. This involved collaborating with appropriate stakeholders to identify business requirements and adhering to RAID best practices and storage principles.",
       "Spearheaded the design, architecture, and implementation of a feature that significantly optimizes the addition of disks to memory space, thereby preventing downsizing and minimizing wasted space on physical disks thereby increasing storage capacity by 50%.",
       "Collaborated with the development team to identify critical RAID processes and their dependencies, ensuring comprehensive test coverage for essential functionalities, and the reliability and resilience of the RAID subsystem"
     ],
@@ -21,7 +21,7 @@
     "duration": "May 2021 - Dec 2021",
     "description": [
       "Engineered a disk configuration optimizer for ONTAP System Manager that provides real-time recommendations for RAID layouts based on workload analysis.",
-      "Delivered end-to-end implementation including backend APIs (Python/C++), SQL-based data persistence, automated testing frameworks, and frontend integration. ",
+      "Delivered end-to-end implementation, including backend APIs (Python/C++), SQL-based data persistence, automated testing frameworks, and frontend integration, therby increasing efficiency by 5%. ",
       "Contributed to NetApp's distributed storage platform serving enterprise customers with petabyte-scale storage requirements."
     ],
     "technologies": ["C++", "C", "Linux"],

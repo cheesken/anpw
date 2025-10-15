@@ -116,7 +116,7 @@ const Projects = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-3xl w-full max-h-[70vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
+              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-3xl w-full max-h-[55vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Project Header */}
