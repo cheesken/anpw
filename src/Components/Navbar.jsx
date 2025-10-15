@@ -91,9 +91,46 @@ const Navbar = () => {
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:bg-white transition-colors"
+            className="px-4 py-2 md:px-5 md:py-2.5 rounded-xl bg-white/90 backdrop-blur-sm flex items-center gap-2 cursor-pointer hover:bg-white transition-all hover:shadow-lg group"
           >
-            <span className="text-purple-600 font-bold text-lg md:text-xl">A</span>
+            <div className="flex items-center">
+              {/* Hexagon icon */}
+              <svg
+                viewBox="0 0 24 24"
+                className="w-6 h-6 md:w-7 md:h-7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#5a6cb8" />
+                    <stop offset="100%" stopColor="#ba7893" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M12 2L21 7V17L12 22L3 17V7L12 2Z"
+                  fill="url(#hexGradient)"
+                  stroke="#342d66"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <text
+                  x="12"
+                  y="16"
+                  textAnchor="middle"
+                  fill="white"
+                  fontSize="11"
+                  fontWeight="700"
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                >
+                  A
+                </text>
+              </svg>
+              {/* Name text */}
+              <span className="ml-2 text-[#342d66] font-bold text-base md:text-lg tracking-tight group-hover:text-[#5a6cb8] transition-colors">
+                Ananya
+              </span>
+            </div>
           </a>
         </div>
 

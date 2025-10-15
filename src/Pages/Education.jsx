@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EducationCard from '../Components/EducationCard';
 import educationData from '../data/education.json';
 
 const Education = () => {
   const [selectedEducation, setSelectedEducation] = useState(null);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
   const handleCardClick = (education) => {
     setSelectedEducation(education);
@@ -13,6 +14,29 @@ const Education = () => {
   const handleCloseOverlay = () => {
     setSelectedEducation(null);
   };
+
+  useEffect(() => {
+    const container = document.querySelector('.education-scroll-container');
+    if (container) {
+      const checkScroll = () => {
+        const isScrollable = container.scrollWidth > container.clientWidth;
+        setShowScrollIndicator(isScrollable);
+      };
+
+      // Initial check with small delay to ensure layout is complete
+      setTimeout(checkScroll, 100);
+
+      const observer = new ResizeObserver(checkScroll);
+      observer.observe(container);
+
+      window.addEventListener('resize', checkScroll);
+
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
+  }, []);
 
   // Helper function to check if logo is an image path
   const isImagePath = (logo) => {
@@ -52,59 +76,51 @@ const Education = () => {
       </motion.div>
 
       {/* Cards Container */}
-      <div className="w-full max-w-[95vw] lg:max-w-7xl flex-1 flex items-center justify-center px-4 md:px-8 relative z-10">
-        <div className="w-full h-[55vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-12">
+      <div className="w-full h-[60vh] max-w-[95vw] lg:max-w-7xl flex items-center justify-center px-4 md:px-8 relative z-10">
+        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-1 md:py-12 education-scroll-container">
           <AnimatePresence mode="popLayout">
-            <motion.div
-              className="flex gap-8 md:gap-12 h-full items-center px-4"
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <div className="flex gap-8 md:gap-12 h-full items-center px-4">
               {educationData.map((education, index) => (
-                <motion.div
+                <div
                   key={education.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
                   className="flex-shrink-0 w-[75vw] sm:w-[65vw] md:w-[480px] lg:w-[550px] h-full"
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   onClick={() => handleCardClick(education)}
                 >
                   <EducationCard education={education} index={index} />
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="flex-shrink-0 mb-8 text-[#342d66] text-base font-semibold flex items-center gap-3 relative z-10"
-      >
-        <span>Scroll to explore</span>
+      {/* Scroll Indicator - Only show if scrollable */}
+      {showScrollIndicator && (
         <motion.div
-          animate={{ x: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="text-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="flex-shrink-0 mb-8 text-[#ba7893] text-base font-semibold flex items-center gap-3 relative z-10"
         >
-          →
+          <span>Scroll to explore</span>
+          <motion.div
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="text-2xl"
+          >
+            →
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
 
-      {/* Expanded Card Overlay */}
+      {/* Expanded Card Overlay - Mobile Optimized */}
       <AnimatePresence>
         {selectedEducation && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 md:p-4"
             onClick={handleCloseOverlay}
           >
             <motion.div
@@ -112,13 +128,13 @@ const Education = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 max-w-3xl w-full max-h-[80vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
+              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-3xl w-full max-h-[70vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Education Header */}
-              <div className="flex items-start gap-6 mb-6">
+              <div className="flex items-start gap-4 md:gap-6 mb-5 md:mb-6">
                 {selectedEducation.logo && (
-                  <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-3">
+                  <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-2 md:p-3">
                     {isImagePath(selectedEducation.logo) ? (
                       <img
                         src={selectedEducation.logo}
@@ -126,25 +142,25 @@ const Education = () => {
                         className="w-full h-full object-contain"
                       />
                     ) : (
-                      <span className="text-5xl">{selectedEducation.logo}</span>
+                      <span className="text-3xl md:text-5xl">{selectedEducation.logo}</span>
                     )}
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
                   {selectedEducation.school && (
-                    <h3 className="text-4xl font-bold text-[#342d66] mb-2 leading-tight">
+                    <h3 className="text-2xl md:text-4xl font-bold text-[#342d66] mb-1 md:mb-2 leading-tight">
                       {selectedEducation.school}
                     </h3>
                   )}
                   {selectedEducation.degree && (
-                    <p className="text-2xl text-[#5a6cb8] font-bold mb-2 leading-tight">
+                    <p className="text-lg md:text-2xl text-[#5a6cb8] font-bold mb-1 md:mb-2 leading-tight">
                       {selectedEducation.degree}
                     </p>
                   )}
                   {selectedEducation.duration && (
                     <div className="flex items-center gap-2">
-                      <div className="h-1 w-10 bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] rounded-full" />
-                      <p className="text-lg text-gray-500 font-medium">
+                      <div className="h-0.5 md:h-1 w-8 md:w-10 bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] rounded-full" />
+                      <p className="text-sm md:text-lg text-gray-500 font-medium">
                         {selectedEducation.duration}
                       </p>
                     </div>
@@ -154,13 +170,15 @@ const Education = () => {
 
               {/* Achievements - Pill badges */}
               {selectedEducation.achievements && selectedEducation.achievements.length > 0 && (
-                <div className="mb-6">
-                  <h4 className="text-xl font-bold text-[#342d66] mb-3">Achievements</h4>
-                  <div className="flex flex-wrap gap-3">
+                <div className="mb-5 md:mb-6">
+                  <h4 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
+                    Achievements
+                  </h4>
+                  <div className="flex flex-wrap gap-2 md:gap-3">
                     {selectedEducation.achievements.map((achievement, index) => (
                       <span
                         key={index}
-                        className="px-5 py-2.5 rounded-full text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
+                        className="px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
                       >
                         {achievement}
                       </span>
@@ -173,11 +191,15 @@ const Education = () => {
               {selectedEducation.relevantCourses &&
                 selectedEducation.relevantCourses.length > 0 && (
                   <div>
-                    <h4 className="text-xl font-bold text-[#342d66] mb-3">Relevant Courses</h4>
-                    <ul className="space-y-3 text-gray-700 text-lg leading-relaxed">
+                    <h4 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
+                      Relevant Courses
+                    </h4>
+                    <ul className="space-y-2 md:space-y-3 text-gray-700 text-sm md:text-lg leading-relaxed">
                       {selectedEducation.relevantCourses.map((course, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <span className="text-[#5a6cb8] text-xl mt-0.5 flex-shrink-0">•</span>
+                        <li key={idx} className="flex items-start gap-2 md:gap-3">
+                          <span className="text-[#5a6cb8] text-base md:text-xl mt-0.5 flex-shrink-0">
+                            •
+                          </span>
                           <span>{course}</span>
                         </li>
                       ))}
@@ -186,7 +208,9 @@ const Education = () => {
                 )}
 
               {/* Close hint */}
-              <p className="text-center text-sm text-gray-500 mt-8">Click outside to close</p>
+              <p className="text-center text-xs md:text-sm text-gray-500 mt-6 md:mt-8">
+                Click outside to close
+              </p>
             </motion.div>
           </motion.div>
         )}

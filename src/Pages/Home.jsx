@@ -1,13 +1,45 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import profileImage from '../data/1.JPG';
+import { useState, useEffect, useRef } from 'react';
+import profileImage from '../data/2.JPG';
 
 const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
   const fullText = "Hi, I'm Ananya!";
+  const sectionRef = useRef(null);
 
+  // Intersection Observer to detect when section is in view
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          setDisplayedText(''); // Reset text when coming into view
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.3 }, // Trigger when 30% of component is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // Typing animation that resets when component comes into view
+  useEffect(() => {
+    if (!isVisible) return;
+
     let currentIndex = 0;
+    setDisplayedText(''); // Reset before starting
+
     const typingInterval = setInterval(() => {
       if (currentIndex < fullText.length) {
         setDisplayedText(fullText.slice(0, currentIndex + 1));
@@ -18,7 +50,7 @@ const Home = () => {
     }, 100);
 
     return () => clearInterval(typingInterval);
-  }, []);
+  }, [isVisible]);
 
   // Smooth scroll function
   const handleSmoothScroll = (e, targetId) => {
@@ -40,11 +72,26 @@ const Home = () => {
     }
   };
 
+  const handleScrollDown = () => {
+    const scrollContainer = document.querySelector('.snap-y');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <main className="min-h-screen w-full flex items-center justify-center px-4 py-20" role="main">
+    <main
+      ref={sectionRef}
+      className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20 relative"
+      role="main"
+    >
       <motion.section
         initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative w-full max-w-md"
         aria-label="Home Card"
@@ -56,7 +103,8 @@ const Home = () => {
         >
           <motion.div
             initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white p-1 shadow-2xl">
@@ -80,7 +128,8 @@ const Home = () => {
           <motion.h1
             id="home-title"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 1 }}
             className="text-4xl md:text-5xl font-bold text-[#342d66] mb-4 min-h-[3rem]"
           >
@@ -98,7 +147,8 @@ const Home = () => {
           {/* Description Text */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.6 }}
             className="text-gray-600 text-base md:text-lg leading-relaxed mb-8"
           >
@@ -110,7 +160,8 @@ const Home = () => {
           {/* Call-to-Action Buttons */}
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.7 }}
             className="flex flex-wrap gap-4 items-center"
             aria-label="Call to Action"
@@ -142,6 +193,38 @@ const Home = () => {
           </motion.nav>
         </section>
       </motion.section>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="absolute bottom-8 left-0 right-0 mx-auto flex flex-col items-center gap-2 cursor-pointer w-fit"
+        onClick={handleScrollDown}
+        whileHover={{ scale: 1.1 }}
+        aria-label="Scroll down"
+        role="button"
+      >
+        <span className="text-[#ba7893] text-sm font-semibold">Scroll down</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="text-[#ba7893]"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </motion.div>
+      </motion.div>
     </main>
   );
 };

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ExperienceCard from '../Components/experienceCard.jsx';
 import Filter from '../Components/Filter.jsx';
 import experiencesData from '../data/experiences.json';
@@ -7,6 +7,18 @@ import experiencesData from '../data/experiences.json';
 const Experience = () => {
   const [filteredExperiences, setFilteredExperiences] = useState(experiencesData);
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleFilterChange = (filtered) => {
     setFilteredExperiences(filtered);
@@ -58,29 +70,19 @@ const Experience = () => {
       </motion.div>
 
       {/* Cards Container with Filter Button */}
-      <div className="w-full max-w-[95vw] lg:max-w-7xl flex-1 flex items-center justify-center px-4 md:px-8 relative z-10">
+      <div className="w-full h-[60vh] max-w-[95vw] lg:max-w-7xl flex items-center justify-center px-4 md:px-8 relative z-10">
         {/* Filter Component - Top Right of Container */}
-        <div className="absolute top-4 right-16 md:right-28 lg:right-36 z-20">
+        <div className="absolute top-1 md:top-4 right-16 md:right-28 lg:right-36 z-20">
           <Filter data={experiencesData} onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="w-full h-[55vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-12">
+        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-1 md:py-12">
           <AnimatePresence mode="popLayout">
-            <motion.div
-              className="flex gap-8 md:gap-12 h-full items-center px-4"
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <div className="flex gap-8 md:gap-12 h-full items-center px-4">
               {filteredExperiences.map((experience, index) => (
-                <motion.div
+                <div
                   key={experience.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
                   className="flex-shrink-0 w-[75vw] sm:w-[65vw] md:w-[480px] lg:w-[550px] h-full"
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <ExperienceCard
                     experience={experience}
@@ -89,9 +91,9 @@ const Experience = () => {
                     selectedFilters={[]}
                     onClick={() => handleCardClick(experience)}
                   />
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </AnimatePresence>
         </div>
       </div>
@@ -101,7 +103,7 @@ const Experience = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="flex-shrink-0 mb-8 text-[#342d66] text-base font-semibold flex items-center gap-3 relative z-10"
+        className="flex-shrink-0 mb-8 text-[#ba7893] text-base font-semibold flex items-center gap-3 relative z-10"
       >
         <span>Scroll to explore</span>
         <motion.div
@@ -128,12 +130,12 @@ const Experience = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 max-w-3xl w-full max-h-[80vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
+              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-4 md:p-8 max-w-3xl w-full max-h-[85vh] md:max-h-[80vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Company Header */}
-              <div className="flex items-start gap-6 mb-6">
-                <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1">
+              <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1">
                   {isImagePath(selectedExperience.logo) ? (
                     <img
                       src={import.meta.env.BASE_URL + selectedExperience.logo}
@@ -145,19 +147,19 @@ const Experience = () => {
                       }}
                     />
                   ) : (
-                    <span className="text-5xl">{selectedExperience.logo}</span>
+                    <span className="text-3xl md:text-5xl">{selectedExperience.logo}</span>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-4xl font-bold text-[#342d66] mb-2 leading-tight">
+                  <h3 className="text-2xl md:text-4xl font-bold text-[#342d66] mb-1 md:mb-2 leading-tight">
                     {selectedExperience.company}
                   </h3>
-                  <p className="text-2xl text-[#5a6cb8] font-bold mb-2 leading-tight">
+                  <p className="text-lg md:text-2xl text-[#5a6cb8] font-bold mb-1 md:mb-2 leading-tight">
                     {selectedExperience.role}
                   </p>
                   <div className="flex items-center gap-2">
-                    <div className="h-1 w-10 bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] rounded-full" />
-                    <p className="text-lg text-gray-500 font-medium">
+                    <div className="h-1 w-8 md:w-10 bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] rounded-full" />
+                    <p className="text-sm md:text-lg text-gray-500 font-medium">
                       {selectedExperience.duration}
                     </p>
                   </div>
@@ -165,19 +167,23 @@ const Experience = () => {
               </div>
 
               {/* Description */}
-              <div className="mb-6">
-                <h4 className="text-xl font-bold text-[#342d66] mb-3">Description</h4>
+              <div className="mb-4 md:mb-6">
+                <h4 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
+                  Description
+                </h4>
                 {Array.isArray(selectedExperience.description) ? (
-                  <ul className="space-y-3 text-gray-700 text-lg leading-relaxed">
+                  <ul className="space-y-2 md:space-y-3 text-gray-700 text-sm md:text-lg leading-relaxed">
                     {selectedExperience.description.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <span className="text-[#ba7893] text-xl mt-0.5 flex-shrink-0">•</span>
+                      <li key={idx} className="flex items-start gap-2 md:gap-3">
+                        <span className="text-[#ba7893] text-base md:text-xl mt-0.5 flex-shrink-0">
+                          •
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-gray-700 text-lg leading-relaxed">
+                  <p className="text-gray-700 text-sm md:text-lg leading-relaxed">
                     {selectedExperience.description}
                   </p>
                 )}
@@ -185,12 +191,14 @@ const Experience = () => {
 
               {/* Technologies */}
               <div>
-                <h4 className="text-xl font-bold text-[#342d66] mb-3">Technologies</h4>
-                <div className="flex flex-wrap gap-3">
+                <h4 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
+                  Technologies
+                </h4>
+                <div className="flex flex-wrap gap-2 md:gap-3">
                   {selectedExperience.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-5 py-2.5 rounded-full text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
+                      className="px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
                     >
                       {tech}
                     </span>
@@ -199,7 +207,9 @@ const Experience = () => {
               </div>
 
               {/* Close hint */}
-              <p className="text-center text-sm text-gray-500 mt-8">Click outside to close</p>
+              <p className="text-center text-xs md:text-sm text-gray-500 mt-4 md:mt-8">
+                Click outside to close
+              </p>
             </motion.div>
           </motion.div>
         )}
