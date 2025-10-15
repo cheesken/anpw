@@ -20,6 +20,13 @@ const Experience = () => {
     setSelectedExperience(null);
   };
 
+  // Helper function to check if logo is an image path
+  const isImagePath = (logo) => {
+    if (!logo) return false;
+    const imageExtensions = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif'];
+    return imageExtensions.some((ext) => logo.toLowerCase().includes(ext));
+  };
+
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
       {/* Decorative background elements */}
@@ -126,8 +133,20 @@ const Experience = () => {
             >
               {/* Company Header */}
               <div className="flex items-start gap-6 mb-6">
-                <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center text-5xl shadow-2xl flex-shrink-0">
-                  {selectedExperience.logo}
+                <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1">
+                  {isImagePath(selectedExperience.logo) ? (
+                    <img
+                      src={selectedExperience.logo}
+                      alt={`${selectedExperience.company} logo`}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        console.error('Failed to load image:', selectedExperience.logo);
+                      }}
+                    />
+                  ) : (
+                    <span className="text-5xl">{selectedExperience.logo}</span>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-4xl font-bold text-[#342d66] mb-2 leading-tight">
@@ -148,9 +167,20 @@ const Experience = () => {
               {/* Description */}
               <div className="mb-6">
                 <h4 className="text-xl font-bold text-[#342d66] mb-3">Description</h4>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  {selectedExperience.description}
-                </p>
+                {Array.isArray(selectedExperience.description) ? (
+                  <ul className="space-y-3 text-gray-700 text-lg leading-relaxed">
+                    {selectedExperience.description.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <span className="text-[#ba7893] text-xl mt-0.5 flex-shrink-0">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    {selectedExperience.description}
+                  </p>
+                )}
               </div>
 
               {/* Technologies */}

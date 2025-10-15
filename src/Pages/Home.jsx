@@ -41,35 +41,44 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center px-4 py-20">
-      <motion.div
+    <main className="min-h-screen w-full flex items-center justify-center px-4 py-20" role="main">
+      <motion.section
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative w-full max-w-md"
+        aria-label="Home Card"
       >
-        {/* Profile Picture */}
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-20"
+        {/* Profile and Heading */}
+        <header
+          className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
+          aria-label="Profile Header"
         >
-          <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white p-1 shadow-2xl">
-            <div className="w-full h-full rounded-full overflow-hidden">
-              <img
-                src={profileImage}
-                alt="Ananya's Profile"
-                className="w-full h-full object-cover"
-              />
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white p-1 shadow-2xl">
+              <div className="w-full h-full rounded-full overflow-hidden">
+                <img
+                  src={profileImage}
+                  alt="Portrait of Ananya, software engineer"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </header>
 
-        {/* Main Card */}
-        <div className="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-8 pt-20 md:p-10 md:pt-24">
+        {/* Main Card Content */}
+        <section
+          className="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-8 pt-20 md:p-10 md:pt-24"
+          aria-labelledby="home-title"
+        >
           {/* Typing Animation Text */}
           <motion.h1
+            id="home-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
@@ -78,6 +87,7 @@ const Home = () => {
             {displayedText}
             {displayedText !== fullText && (
               <motion.span
+                aria-hidden="true"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
                 className="inline-block w-0.5 h-8 md:h-10 bg-[#5a6cb8] ml-1"
@@ -98,11 +108,12 @@ const Home = () => {
           </motion.p>
 
           {/* Call-to-Action Buttons */}
-          <motion.div
+          <motion.nav
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
             className="flex flex-wrap gap-4 items-center"
+            aria-label="Call to Action"
           >
             <motion.a
               href="#projects"
@@ -111,6 +122,8 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 300 }}
               className="px-6 py-3 bg-gradient-to-r from-[#5a6cb8] to-[#ba7893] text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              role="button"
+              aria-label="View Projects"
             >
               Projects
             </motion.a>
@@ -121,13 +134,15 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 300 }}
               className="px-6 py-3 bg-white border-2 border-[#5a6cb8] text-[#5a6cb8] rounded-full font-semibold shadow-lg hover:shadow-xl hover:bg-[#5a6cb8] hover:text-white transition-all duration-300"
+              role="button"
+              aria-label="Contact Me"
             >
               Contact Me
             </motion.a>
-          </motion.div>
-        </div>
-      </motion.div>
-    </div>
+          </motion.nav>
+        </section>
+      </motion.section>
+    </main>
   );
 };
 

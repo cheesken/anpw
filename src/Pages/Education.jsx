@@ -14,6 +14,13 @@ const Education = () => {
     setSelectedEducation(null);
   };
 
+  // Helper function to check if logo is an image path
+  const isImagePath = (logo) => {
+    if (!logo) return false;
+    const imageExtensions = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif'];
+    return imageExtensions.some((ext) => logo.toLowerCase().includes(ext));
+  };
+
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
       {/* Decorative background elements */}
@@ -111,8 +118,16 @@ const Education = () => {
               {/* Education Header */}
               <div className="flex items-start gap-6 mb-6">
                 {selectedEducation.logo && (
-                  <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center text-5xl shadow-2xl flex-shrink-0">
-                    {selectedEducation.logo}
+                  <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-3">
+                    {isImagePath(selectedEducation.logo) ? (
+                      <img
+                        src={selectedEducation.logo}
+                        alt={`${selectedEducation.school} logo`}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-5xl">{selectedEducation.logo}</span>
+                    )}
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
@@ -137,38 +152,38 @@ const Education = () => {
                 </div>
               </div>
 
-              {/* Relevant Courses */}
-              {selectedEducation.relevantCourses &&
-                selectedEducation.relevantCourses.length > 0 && (
-                  <div className="mb-6">
-                    <h4 className="text-xl font-bold text-[#342d66] mb-3">Relevant Courses</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedEducation.relevantCourses.map((course, index) => (
-                        <span
-                          key={index}
-                          className="px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-[#5a6cb8]/25 to-[#ba7893]/25 text-[#342d66] border-2 border-[#5a6cb8]/40"
-                        >
-                          {course}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-              {/* Achievements */}
+              {/* Achievements - Pill badges */}
               {selectedEducation.achievements && selectedEducation.achievements.length > 0 && (
-                <div>
+                <div className="mb-6">
                   <h4 className="text-xl font-bold text-[#342d66] mb-3">Achievements</h4>
-                  <div className="space-y-3">
+                  <div className="flex flex-wrap gap-3">
                     {selectedEducation.achievements.map((achievement, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] mt-2 flex-shrink-0" />
-                        <p className="text-gray-700 text-lg leading-relaxed">{achievement}</p>
-                      </div>
+                      <span
+                        key={index}
+                        className="px-5 py-2.5 rounded-full text-base font-bold bg-gradient-to-r from-[#ba7893] to-[#e9b6b5] text-white border-2 border-[#ba7893] shadow-md"
+                      >
+                        {achievement}
+                      </span>
                     ))}
                   </div>
                 </div>
               )}
+
+              {/* Relevant Courses - Simple bullet list */}
+              {selectedEducation.relevantCourses &&
+                selectedEducation.relevantCourses.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-bold text-[#342d66] mb-3">Relevant Courses</h4>
+                    <ul className="space-y-3 text-gray-700 text-lg leading-relaxed">
+                      {selectedEducation.relevantCourses.map((course, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <span className="text-[#5a6cb8] text-xl mt-0.5 flex-shrink-0">•</span>
+                          <span>{course}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
               {/* Close hint */}
               <p className="text-center text-sm text-gray-500 mt-8">Click outside to close</p>

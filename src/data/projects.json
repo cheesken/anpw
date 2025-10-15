@@ -1,38 +1,54 @@
 [
   {
     "id": 1,
-    "name": "Distributed Cache System",
-    "tags": ["Systems", "Performance", "Backend"],
-    "description": "Built a distributed caching layer that reduced database load by 60% and improved API response times by 40%. Implemented consistent hashing and replication strategies.",
-    "technologies": ["Go", "Redis", "Docker", "Kubernetes"],
-    "github": "https://github.com/yourusername/distributed-cache",
-    "logo": "⚡"
+    "name": "Transitly: AI-Powered Moving Assistant",
+    "tags": ["AI/ML", "Full-Stack", "Automation"],
+    "description": [
+      "Built an intelligent moving assistant that automates address change workflows across 10+ services (USPS, utilities, insurance, DMV, banks).",
+      "Integrated AWS Nova Act SDK for autonomous browser automation to autofill forms up to final review, reducing 6+ hours of manual work to 20 minutes.",
+      "Implemented real-time checklist tracking with OAuth authentication, saving user preferences in DynamoDB for seamless multi-step task management.",
+      "Features conversational AI chatbot for guidance and automated confirmation logging with calendar reminders."
+    ],
+    "technologies": ["React", "Next.js", "Python", "AWS Bedrock", "AWS Nova Act SDK", "DynamoDB"],
+    "github": "https://github.com/neels22/Transitly",
+    "logo": "🚚"
   },
   {
     "id": 2,
-    "name": "AI Code Assistant",
-    "tags": ["AI/ML", "Full-Stack", "Developer Tools"],
-    "description": "Developed an AI-powered code completion tool using transformer models. Integrated with VS Code and supports multiple programming languages.",
-    "technologies": ["Python", "TypeScript", "React", "OpenAI"],
-    "github": "https://github.com/yourusername/ai-code-assistant",
-    "logo": "🤖"
+    "name": "CollabWatch",
+    "tags": ["Full-Stack", "Real-time", "Web Development"],
+    "description": [
+      "Developed a real-time video collaboration platform for students using HTML, CSS, Tailwind CSS, JavaScript, React, Node.js, Docker, and Amazon EC2.",
+      "Implemented WebSockets for live interaction, improving real-time communication."
+    ],
+    "technologies": ["React", "Node.js", "WebSocket", "Docker", "AWS EC2", "Tailwind CSS"],
+    "github": "https://github.com/withteja/Collabwatch",
+    "logo": "🎥"
   },
   {
     "id": 3,
-    "name": "Real-time Analytics Dashboard",
-    "tags": ["Full-Stack", "Data Visualization", "Real-time"],
-    "description": "Created a real-time analytics platform processing 10K+ events per second. Features interactive charts, live data streaming, and custom alerting.",
-    "technologies": ["React", "WebSocket", "Node.js", "InfluxDB"],
-    "github": "https://github.com/yourusername/analytics-dashboard",
-    "logo": "📊"
+    "name": "Reforestation Cost Analysis Project",
+    "tags": ["Data Science", "ML", "Analytics"],
+    "description": [
+      "Preprocessed and cleaned U.S. forest reforestation datasets (handled missing values, normalized features, and engineered cost-related variables) to ensure model reliability.",
+      "Developed and compared predictive models (Linear Regression, Ridge/Lasso) to identify the most effective method for quantifying relationships between project costs and reforestation outcomes.",
+      "Conducted residual analysis and visualized key patterns using scatter plots and regression lines, uncovering cost thresholds that maximize reforestation efficiency.",
+      "Generated data-driven insights that could inform sustainable resource allocation strategies in U.S. reforestation initiatives."
+    ],
+    "technologies": ["Python", "Scikit-learn", "Pandas", "Matplotlib"],
+    "github": "https://github.com/Kurogisa/Reforestation-Datamining",
+    "logo": "🌲"
   },
   {
     "id": 4,
-    "name": "Cloud Infrastructure Automation",
-    "tags": ["DevOps", "Infrastructure", "Automation"],
-    "description": "Automated cloud infrastructure deployment with infrastructure-as-code. Reduced deployment time from hours to minutes with zero-downtime deployments.",
-    "technologies": ["Terraform", "AWS", "Python", "GitHub Actions"],
-    "github": "https://github.com/yourusername/cloud-automation",
-    "logo": "☁️"
+    "name": "Heap Allocator",
+    "tags": ["Systems", "Operating Systems", "Memory Management"],
+    "description": [
+      "Designed a custom heap allocator with next-fit placement, splitting, and coalescing.",
+      "Optimized memory management using C, improving allocation efficiency."
+    ],
+    "technologies": ["C"],
+    "github": "",
+    "logo": "💾"
   }
 ]

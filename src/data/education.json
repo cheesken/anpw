@@ -1,40 +1,43 @@
 [
   {
     "id": 1,
-    "school": "Stanford University",
-    "degree": "Master of Science in Computer Science",
-    "duration": "2020 - 2022",
-    "logo": "🎓",
+    "school": "San Jose State University",
+    "degree": "Master of Science in Software Engineering",
+    "duration": "December 2026",
+    "logo": "/logos/SJSULogo.png",
     "relevantCourses": [
+      "Enterprise Software Platforms",
+      "Software Systems Engineering",
+      "Data Mining",
+      "Artificial Intelligence and Data Engineering",
       "Machine Learning",
-      "Distributed Systems",
-      "Machine Learning",
-      "Distributed Systems",
-      "Machine Learning",
-      "Distributed Systems",
-      "Machine Learning",
-      "Distributed Systems",
-      "Advanced Algorithms",
-      "Machine Learning",
-      "Distributed Systems",
-      "Machine Learning",
-      "Distributed Systems",
-      "Machine Learning",
-      "Distributed Systems",
-      "Machine Learning",
-      "Distributed Systems",
-      "Advanced Algorithms"
+      "Internet of Things"
     ],
-    "achievements": [
-      "Dean's List all semesters",
-      "Published research paper on distributed computing"
-    ]
+    "achievements": []
   },
   {
     "id": 2,
-    "school": "MIT",
-    "degree": "Bachelor of Science in Computer Engineering",
-    "duration": "2016 - 2020",
-    "logo": "🏛️"
+    "school": "University of Wisconsin-Madison",
+    "degree": "Bachelor of Science in Computer Science",
+    "duration": "December 2021",
+    "logo": "/logos/UWLogo.png",
+    "relevantCourses": [
+      "CS 200: Programming I",
+      "CS 240: Discrete Mathematics",
+      "CS 252: Introduction to Computer Engineering",
+      "CS 300: Programming II",
+      "CS 368: C++ Programming.",
+      "CS 354: Computer Organization and Programming",
+      "CS 400: Programming III (DS/Algos)",
+      "CS 506: Software Engineering",
+      "CS 540: Introduction to Artificial Intelligence",
+      "CS 536: Intro-Progm Langs&Compilers",
+      "CS 537: Operating Systems",
+      "CS 564: Database Mgt Systems",
+      "CS 577: Introduction to Algorithms",
+      "CS 638: Agile and Scrum methodologies",
+      "CS 639: Data Management for Data Science"
+    ],
+    "achievements": []
   }
 ]
