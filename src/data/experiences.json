@@ -6,9 +6,9 @@
     "role": "Software Engineer",
     "duration": "Feb 2022 - Jan 2025",
     "description": [
-      "Led a team of four in the design, architecture, and implementation of a feature aimed at reducing system downtime caused by failed disks. This involved collaborating with appropriate stakeholders to identify business requirements and adhering to RAID best practices and storage principles.",
-      "Spearheaded the design, architecture, and implementation of a feature that significantly optimizes the addition of disks to memory space, thereby preventing downsizing and minimizing wasted space on physical disks thereby increasing storage capacity by 50%.",
-      "Collaborated with the development team to identify critical RAID processes and their dependencies, ensuring comprehensive test coverage for essential functionalities, and the reliability and resilience of the RAID subsystem"
+      "Led a team of four in the design, architecture, and implementation of a feature that reduced system downtime by 20% caused by disk failures",
+      "Spearheaded the design, architecture, and implementation of a feature that optimizes disk-to-memory space allocation, preventing downsizing and minimizing wasted space on physical disks, resulting in a 50% increase in storage capacity",
+      "Collaborated with the development team to identify critical RAID processes and their dependencies, ensuring comprehensive test coverage for essential functionalities, and improving the reliability and resilience of the RAID subsystem"
     ],
     "technologies": ["C++", "C", "Linux"],
     "logo": "logos/NetAppLogo.png"
@@ -20,9 +20,9 @@
     "role": "Software Engineer Intern",
     "duration": "May 2021 - Dec 2021",
     "description": [
-      "Engineered a disk configuration optimizer for ONTAP System Manager that provides real-time recommendations for RAID layouts based on workload analysis.",
-      "Delivered end-to-end implementation, including backend APIs (Python/C++), SQL-based data persistence, automated testing frameworks, and frontend integration, therby increasing efficiency by 5%. ",
-      "Contributed to NetApp's distributed storage platform serving enterprise customers with petabyte-scale storage requirements."
+      "Engineered a disk configuration optimizer for ONTAP System Manager that provides real-time recommendations for RAID layouts based on workload analysis",
+      "Delivered end-to-end implementation, including backend APIs (Python/C++), SQL-based data persistence, automated testing frameworks, and frontend integration, increasing system efficiency by 5%",
+      "Contributed to NetApp's distributed storage platform serving enterprise customers with petabyte-scale storage requirements"
     ],
     "technologies": ["C++", "C", "Linux"],
     "logo": "logos/NetAppLogo.png"
@@ -38,6 +38,21 @@
       "Led review sessions, office hours, and developed practice problems for over 500 students."
     ],
     "technologies": ["C++", "C", "Python", "TensorFlow", "PyTorch"],
+    "logo": "logos/UWLogo.png"
+  },
+  {
+    "id": 4,
+    "company": "Division of Information Technology, UW-Madison",
+    "tags": ["Cloud", "Integration", "Backend"],
+    "role": "Enterprise Integration Intern",
+    "duration": "Feb 2021 - Mar 2021",
+    "description": [
+      "Developed and maintained integrations on DoIT's enterprise integration platform, supporting campus-wide services and infrastructure",
+      "Migrated legacy integrations to cloud-native technologies following modern best practices",
+      "Collaborated with campus partners to document business requirements and translate them into technical integration solutions",
+      "Provided end-user support and contributed to internal and external documentation"
+    ],
+    "technologies": ["Cloud Technologies", "REST APIs", "Integration Platforms"],
     "logo": "logos/UWLogo.png"
   }
 ]
