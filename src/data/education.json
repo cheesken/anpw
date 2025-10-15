@@ -4,7 +4,7 @@
     "school": "San Jose State University",
     "degree": "Master of Science in Software Engineering",
     "duration": "December 2026",
-    "logo": "/logos/SJSULogo.png",
+    "logo": "logos/SJSULogo.png",
     "relevantCourses": [
       "Enterprise Software Platforms",
       "Software Systems Engineering",
@@ -20,7 +20,7 @@
     "school": "University of Wisconsin-Madison",
     "degree": "Bachelor of Science in Computer Science",
     "duration": "December 2021",
-    "logo": "/logos/UWLogo.png",
+    "logo": "logos/UWLogo.png",
     "relevantCourses": [
       "CS 200: Programming I",
       "CS 240: Discrete Mathematics",

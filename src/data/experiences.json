@@ -11,7 +11,7 @@
       "Collaborated with the development team to identify critical RAID processes and their dependencies, ensuring comprehensive test coverage for essential functionalities, and the reliability and resilience of the RAID subsystem"
     ],
     "technologies": ["C++", "C", "Linux"],
-    "logo": "/logos/NetAppLogo.png"
+    "logo": "logos/NetAppLogo.png"
   },
   {
     "id": 2,
@@ -25,7 +25,7 @@
       "Contributed to NetApp's distributed storage platform serving enterprise customers with petabyte-scale storage requirements."
     ],
     "technologies": ["C++", "C", "Linux"],
-    "logo": "/logos/NetAppLogo.png"
+    "logo": "logos/NetAppLogo.png"
   },
   {
     "id": 3,
@@ -38,6 +38,6 @@
       "Led review sessions, office hours, and developed practice problems for over 500 students."
     ],
     "technologies": ["C++", "C", "Python", "TensorFlow", "PyTorch"],
-    "logo": "/logos/UWLogo.png"
+    "logo": "logos/UWLogo.png"
   }
 ]
