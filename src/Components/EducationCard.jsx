@@ -37,7 +37,7 @@ const EducationCard = ({ education, index }) => {
               {/* Check if logo is an image path or emoji/text */}
               {isImagePath(education.logo) ? (
                 <img
-                  src={education.logo}
+                  src={import.meta.env.BASE_URL + education.logo}
                   alt={`${education.school} logo`}
                   className="w-12 h-12 md:w-16 md:h-16 object-contain relative z-10 p-2"
                 />

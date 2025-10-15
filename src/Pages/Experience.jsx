@@ -136,7 +136,7 @@ const Experience = () => {
                 <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1">
                   {isImagePath(selectedExperience.logo) ? (
                     <img
-                      src={selectedExperience.logo}
+                      src={import.meta.env.BASE_URL + selectedExperience.logo}
                       alt={`${selectedExperience.company} logo`}
                       className="w-full h-full object-contain"
                       onError={(e) => {

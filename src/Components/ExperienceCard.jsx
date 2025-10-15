@@ -41,7 +41,7 @@ const ExperienceCard = ({ experience, index, matchCount, selectedFilters = [], o
             {/* Check if logo is an image path or emoji/text */}
             {isImagePath(experience.logo) ? (
               <img
-                src={experience.logo}
+                src={import.meta.env.BASE_URL + experience.logo}
                 alt={`${experience.company} logo`}
                 className="w-12 h-12 md:w-16 md:h-16 object-contain relative z-10 p-1"
                 onError={(e) => {
