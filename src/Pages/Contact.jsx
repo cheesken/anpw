@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import profileImageDesktop from '../data/3.JPG';
-import profileImageMobile from '../data/4.PNG';
+import profileImageMobile from '../data/4.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
