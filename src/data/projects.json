@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Transitly: AI-Powered Moving Assistant",
-    "video": "videos/Transitly.mp4",
+    "video": "https://www.youtube.com/embed/puFjrt_vZxU",
     "tags": ["AI/ML", "Full-Stack", "Automation"],
     "description": [
       "Built intelligent moving assistant automating address changes across 10+ services (USPS, utilities, insurance, DMV, banks), reducing 6+ hours to 20 minutes.",
@@ -17,7 +17,7 @@
   {
     "id": 2,
     "name": "TravelPlanner",
-    "video": "videos/TravelAppDemo.mp4",
+    "video": "https://www.youtube.com/embed/FAUT9S3oNDM",
     "tags": ["AI/ML", "Full-Stack", "Real-time"],
     "description": [
       "Built AI-powered collaborative trip planner using LangGraph multi-agent orchestration coordinating 4 specialized agents with GPT-4 for group consensus.",
@@ -42,7 +42,7 @@
   {
     "id": 3,
     "name": "Music Recommendation System",
-    "video": "videos/MusicRecommenderDemo.mp4",
+    "video": "https://www.youtube.com/embed/G4NwoHBbgiI",
     "tags": ["AI/ML", "Data Science", "Web Development"],
     "description": [
       "Built hybrid recommendation engine processing 57,000+ songs and 1.6GB user interaction data, achieving 78% precision@10 for personalized suggestions.",
