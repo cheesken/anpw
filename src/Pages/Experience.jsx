@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import ExperienceCard from '../Components/experienceCard.jsx';
+import ExperienceCard from '../Components/ExperienceCard.jsx';
 import Filter from '../Components/Filter.jsx';
 import experiencesData from '../data/experiences.json';
 
