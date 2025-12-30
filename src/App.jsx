@@ -1,6 +1,6 @@
 import Background from './Components/Background';
 import Navbar from './Components/Navbar';
-import Home from './Pages/home';
+import Home from './Pages/Home';
 import Experience from './Pages/Experience';
 import Projects from './Pages/Projects';
 import Education from './Pages/Education';
