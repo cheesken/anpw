@@ -22,12 +22,10 @@ const Projects = () => {
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Decorative background elements */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-[#ba7893]/10 to-[#e9b6b5]/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-[#5a6cb8]/10 to-[#ba7893]/10 rounded-full blur-3xl" />
       <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-gradient-to-br from-[#342d66]/5 to-[#5a6cb8]/5 rounded-full blur-2xl" />
 
-      {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -50,14 +48,12 @@ const Projects = () => {
         />
       </motion.div>
 
-      {/* Cards Container with Filter Button */}
       <div className="w-full h-[60vh] max-w-[95vw] lg:max-w-7xl flex items-center justify-center px-4 md:px-8 relative z-10">
-        {/* Filter Component - Top Right of Container */}
         <div className="absolute top-1 md:top-4 right-16 md:right-28 lg:right-36 z-20">
           <Filter data={projectsData} onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-1 md:py-12">
+        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar py-1 md:py-12">
           <AnimatePresence mode="popLayout">
             <div className="flex gap-8 md:gap-12 h-full items-center px-4">
               {filteredProjects.map((project, index) => (
@@ -84,7 +80,6 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -97,11 +92,10 @@ const Projects = () => {
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="text-2xl"
         >
-          →
+          &rarr;
         </motion.div>
       </motion.div>
 
-      {/* Expanded Card Overlay - Mobile Optimized */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -116,10 +110,9 @@ const Projects = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-3xl w-full max-h-[55vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
+              className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Project Header */}
               <div className="flex items-start gap-4 md:gap-6 mb-5 md:mb-6">
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center text-3xl md:text-5xl shadow-2xl flex-shrink-0">
                   {selectedProject.logo}
@@ -144,7 +137,24 @@ const Projects = () => {
                 )}
               </div>
 
-              {/* Description */}
+              {selectedProject.video && (
+                <div className="mb-5 md:mb-6">
+                  <video
+                    controls
+                    className="w-full rounded-xl shadow-lg bg-transparent"
+                    style={{ height: '450px', objectFit: 'contain', backgroundColor: '#5a6cb8' }}
+                    preload="auto"
+                    playsInline
+                  >
+                    <source
+                      src={import.meta.env.BASE_URL + selectedProject.video}
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
+
               <div className="mb-5 md:mb-6">
                 <h3 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
                   Description
@@ -154,7 +164,7 @@ const Projects = () => {
                     {selectedProject.description.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2 md:gap-3">
                         <span className="text-[#ba7893] text-base md:text-xl mt-0.5 flex-shrink-0">
-                          •
+                          &bull;
                         </span>
                         <span>{item}</span>
                       </li>
@@ -167,7 +177,6 @@ const Projects = () => {
                 )}
               </div>
 
-              {/* Technologies */}
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
                   Technologies
@@ -184,7 +193,6 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Close hint */}
               <p className="text-center text-xs md:text-sm text-gray-500 mt-6 md:mt-8">
                 Click outside to close
               </p>

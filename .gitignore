@@ -49,3 +49,4 @@ __sapper__/
 # TypeScript
 *.tsbuildinfo
 
+public/videos/*.mp4

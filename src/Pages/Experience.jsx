@@ -76,7 +76,7 @@ const Experience = () => {
           <Filter data={experiencesData} onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-1 md:py-12">
+        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar py-1 md:py-12">
           <AnimatePresence mode="popLayout">
             <div className="flex gap-8 md:gap-12 h-full items-center px-4">
               {filteredExperiences.map((experience, index) => (

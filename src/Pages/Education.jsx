@@ -77,7 +77,7 @@ const Education = () => {
 
       {/* Cards Container */}
       <div className="w-full h-[60vh] max-w-[95vw] lg:max-w-7xl flex items-center justify-center px-4 md:px-8 relative z-10">
-        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide py-1 md:py-12 education-scroll-container">
+        <div className="w-full h-[40vh] md:h-[52vh] overflow-x-auto overflow-y-hidden scroll-smooth py-1 md:py-12 education-scroll-container">
           <AnimatePresence mode="popLayout">
             <div className="flex gap-8 md:gap-12 h-full items-center px-4">
               {educationData.map((education, index) => (
