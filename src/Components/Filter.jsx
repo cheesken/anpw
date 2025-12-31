@@ -33,7 +33,6 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
       techGroups[group].some((tech) => allTechs.has(tech)),
     );
 
-    // Filter out tags that match existing group names
     const tags = Array.from(allTags).filter((tag) => !groups.includes(tag));
 
     setAvailableGroups([...groups, ...tags]);
@@ -64,6 +63,24 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
       document.removeEventListener('mousedown', handleClickOutside, true);
       document.removeEventListener('touchstart', handleClickOutside, true);
       document.removeEventListener('pointerdown', handleClickOutside, true);
+    };
+  }, [showFilters]);
+
+  // Close filter on scroll
+  useEffect(() => {
+    if (!showFilters) return;
+
+    const scrollContainer = document.querySelector('.overflow-x-auto');
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      setShowFilters(false);
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      scrollContainer.removeEventListener('scroll', handleScroll);
     };
   }, [showFilters]);
 
@@ -143,7 +160,7 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/20 md:bg-transparent"
+            className="fixed inset-0 z-[60] bg-black/20 md:bg-transparent pointer-events-none"
             onClick={() => setShowFilters(false)}
           />
         )}
@@ -157,7 +174,7 @@ const Filter = ({ data, onFilterChange, buttonClassName = '' }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed md:absolute top-20 md:top-16 right-4 md:right-0 w-[calc(100vw-2rem)] md:w-[90vw] max-w-md z-[70]"
+            className="fixed md:absolute top-20 md:top-16 right-4 md:right-0 w-[calc(100vw-2rem)] md:w-[90vw] max-w-md z-[70] pointer-events-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-5 shadow-2xl border-2 border-[#ba7893]/30">
