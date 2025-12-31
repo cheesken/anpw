@@ -6,11 +6,13 @@
     "duration": "December 2026",
     "logo": "logos/SJSULogo.png",
     "relevantCourses": [
+      "Machine Learning",
+      "Deep Learning",
+      "Distributed Systems",
       "Enterprise Software Platforms",
       "Software Systems Engineering",
       "Data Mining",
       "Artificial Intelligence and Data Engineering",
-      "Machine Learning",
       "Internet of Things"
     ],
     "achievements": []

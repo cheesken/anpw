@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Transitly: AI-Powered Moving Assistant",
     "video": "https://www.youtube.com/embed/puFjrt_vZxU",
-    "tags": ["AI/ML", "Full-Stack", "Automation"],
+    "tags": ["AI/ML", "Full-Stack", "Agentic AI"],
     "description": [
       "Built intelligent moving assistant automating address changes across 10+ services (USPS, utilities, insurance, DMV, banks), reducing 6+ hours to 20 minutes.",
       "Integrated AWS Nova Act SDK for autonomous browser automation, autofilling forms to final review with 95% accuracy across complex multi-step workflows.",
@@ -18,7 +18,7 @@
     "id": 2,
     "name": "TravelPlanner",
     "video": "https://www.youtube.com/embed/FAUT9S3oNDM",
-    "tags": ["AI/ML", "Full-Stack", "Real-time"],
+    "tags": ["AI/ML", "Full-Stack", "Agentic AI"],
     "description": [
       "Built AI-powered collaborative trip planner using LangGraph multi-agent orchestration coordinating 4 specialized agents with GPT-4 for group consensus.",
       "Engineered real-time WebSocket architecture handling 20+ concurrent planning sessions with live vote aggregation and agent status broadcasting.",
@@ -31,6 +31,7 @@
       "FastAPI",
       "Python",
       "LangGraph",
+      "LangChain",
       "GPT-4",
       "MongoDB",
       "WebSocket",
@@ -43,7 +44,7 @@
     "id": 3,
     "name": "Music Recommendation System",
     "video": "https://www.youtube.com/embed/G4NwoHBbgiI",
-    "tags": ["AI/ML", "Data Science", "Web Development"],
+    "tags": ["AI/ML", "Data Science", "Frontend"],
     "description": [
       "Built hybrid recommendation engine processing 57,000+ songs and 1.6GB user interaction data, achieving 78% precision@10 for personalized suggestions.",
       "Implemented memory-efficient architecture with LRU caching and on-demand similarity computation, reducing storage requirements by 99.9% (3.3B→3.3M values).",
@@ -57,12 +58,13 @@
   {
     "id": 4,
     "name": "Campus Marketplace",
-    "tags": ["Full-Stack", "Real-time", "Cloud"],
+    "video": "https://www.youtube.com/embed/S9RJcWs5Plc",
+    "tags": ["Full-Stack", "Cloud"],
     "description": [
-      "Built peer-to-peer marketplace serving 500+ university students with $50K+ in transaction volume, featuring real-time messaging and AWS S3 image storage.",
-      "Implemented JWT authentication with bcrypt hashing, rate limiting (100 req/min), and role-based admin dashboard for content moderation.",
-      "Developed real-time chat system with WebSockets handling 1,000+ daily messages, read receipts, and sub-second message delivery.",
-      "Designed MongoDB schemas with optimized indexes reducing average query time from 400ms to 45ms for product search and filtering."
+      "Built peer-to-peer marketplace serving 500+ students with $50K+ transaction volume, featuring GPT-4-powered natural language search converting questions like 'CMPE 202 textbook?' into smart product queries.",
+      "Deployed on AWS with auto-scaled EC2 cluster behind load balancer, implementing JWT authentication, rate limiting (100 req/min), and role-based admin moderation dashboard.",
+      "Engineered real-time chat system with WebSockets handling 1,000+ daily messages with read receipts and sub-second delivery.",
+      "Optimized MongoDB schemas with compound indexes reducing search query time from 400ms to 45ms across 10,000+ listings."
     ],
     "technologies": [
       "React",
@@ -71,8 +73,10 @@
       "Express",
       "MongoDB",
       "AWS S3",
+      "AWS EC2",
       "Docker",
-      "JWT"
+      "GPT-4",
+      "WebSocket"
     ],
     "github": "https://github.com/gopinathsjsu/CampusMarketplace",
     "logo": "🛒"
@@ -80,7 +84,7 @@
   {
     "id": 5,
     "name": "CollabWatch",
-    "tags": ["Full-Stack", "Real-time", "Video Streaming"],
+    "tags": ["Full-Stack"],
     "description": [
       "Built real-time video collaboration platform supporting 50+ concurrent users with sub-200ms latency using WebRTC peer-to-peer connections.",
       "Implemented WebSocket-based signaling server with room management, handling connection negotiation and ICE candidate exchange for distributed video streams.",
@@ -102,7 +106,7 @@
   {
     "id": 6,
     "name": "Reforestation Cost Analysis",
-    "tags": ["Data Science", "ML", "Analytics"],
+    "tags": ["Data Science", "AI/ML"],
     "description": [
       "Analyzed 15,000+ U.S. reforestation projects to identify cost-efficiency thresholds, discovering $12K/acre sweet spot maximizing survival rates.",
       "Engineered 23 predictive features including soil composition, climate indices, and temporal variables, improving model R² from 0.43 to 0.78.",

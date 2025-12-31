@@ -1,9 +1,20 @@
 {
   "name": "anpw",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "homepage": "https://cheesken.github.io/anpw",
+  "bugs": {
+    "url": "https://github.com/cheesken/anpw/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheesken/anpw.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -7,6 +7,7 @@ import experiencesData from '../data/experiences.json';
 const Experience = () => {
   const [filteredExperiences, setFilteredExperiences] = useState(experiencesData);
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -20,8 +21,9 @@ const Experience = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleFilterChange = (filtered) => {
+  const handleFilterChange = (filtered, filters) => {
     setFilteredExperiences(filtered);
+    setSelectedFilters(filters || []);
   };
 
   const handleCardClick = (experience) => {
@@ -32,7 +34,6 @@ const Experience = () => {
     setSelectedExperience(null);
   };
 
-  // Helper function to check if logo is an image path
   const isImagePath = (logo) => {
     if (!logo) return false;
     const imageExtensions = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif'];
@@ -41,12 +42,10 @@ const Experience = () => {
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Decorative background elements */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-[#ba7893]/10 to-[#e9b6b5]/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-[#5a6cb8]/10 to-[#ba7893]/10 rounded-full blur-3xl" />
       <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-gradient-to-br from-[#342d66]/5 to-[#5a6cb8]/5 rounded-full blur-2xl" />
 
-      {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -69,9 +68,7 @@ const Experience = () => {
         />
       </motion.div>
 
-      {/* Cards Container with Filter Button */}
       <div className="w-full h-[60vh] max-w-[95vw] lg:max-w-7xl flex items-center justify-center px-4 md:px-8 relative z-10">
-        {/* Filter Component - Top Right of Container */}
         <div className="absolute top-1 md:top-4 right-16 md:right-28 lg:right-36 z-20">
           <Filter data={experiencesData} onFilterChange={handleFilterChange} />
         </div>
@@ -88,7 +85,7 @@ const Experience = () => {
                     experience={experience}
                     index={index}
                     matchCount={experience.matchCount || 0}
-                    selectedFilters={[]}
+                    selectedFilters={selectedFilters}
                     onClick={() => handleCardClick(experience)}
                   />
                 </div>
@@ -98,7 +95,6 @@ const Experience = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -115,7 +111,6 @@ const Experience = () => {
         </motion.div>
       </motion.div>
 
-      {/* Expanded Card Overlay - Mobile Optimized (matching Education) */}
       <AnimatePresence>
         {selectedExperience && (
           <motion.div
@@ -133,7 +128,6 @@ const Experience = () => {
               className="bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-3xl w-[90%] max-h-[55vh] overflow-y-auto shadow-2xl border-2 border-[#ba7893]/40"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Company Header */}
               <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
                 <div className="w-14 h-14 md:w-24 md:h-24 rounded-xl md:rounded-3xl bg-gradient-to-br from-[#ba7893] via-[#c98ba4] to-[#e9b6b5] flex items-center justify-center shadow-2xl flex-shrink-0 p-1.5 md:p-3">
                   {isImagePath(selectedExperience.logo) ? (
@@ -168,7 +162,6 @@ const Experience = () => {
                 </div>
               </div>
 
-              {/* Description */}
               {selectedExperience.description && (
                 <div className="mb-4 md:mb-6">
                   <h4 className="text-base md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
@@ -193,7 +186,6 @@ const Experience = () => {
                 </div>
               )}
 
-              {/* Technologies - Pill badges */}
               {selectedExperience.technologies && selectedExperience.technologies.length > 0 && (
                 <div>
                   <h4 className="text-base md:text-xl font-bold text-[#342d66] mb-2 md:mb-3">
@@ -212,7 +204,6 @@ const Experience = () => {
                 </div>
               )}
 
-              {/* Close hint */}
               <p className="text-center text-xs md:text-sm text-gray-500 mt-4 md:mt-8">
                 Click outside to close
               </p>

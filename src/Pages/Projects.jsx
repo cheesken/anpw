@@ -84,7 +84,7 @@ const Projects = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="flex-shrink-0 mb-8 text-[#ba7893] text-base font-semibold flex items-center gap-3 relative z-10"
+        className="flex-shrink-0 mb-8 text-[#ba7893] text-base font-semibold flex items-center gap-3 relative z-0"
       >
         <span>Scroll to explore</span>
         <motion.div

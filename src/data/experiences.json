@@ -30,20 +30,33 @@
   {
     "id": 3,
     "company": "University of Wisconsin - Madison",
-    "tags": ["AI", "Operating Systems"],
-    "role": "Undergraduate Teaching Assistant",
+    "tags": ["AI/ML"],
+    "role": "Undergraduate Teaching Assistant for CS 540",
     "duration": "Jan 2021 - Apr 2021",
     "description": [
-      "Assisted in CS 540 (Introduction to AI) and CS 354 (C Programming and Computer Systems) courses.",
+      "Assisted in CS 540 (Introduction to AI)",
       "Led review sessions, office hours, and developed practice problems for over 500 students."
     ],
-    "technologies": ["C++", "C", "Python", "TensorFlow", "PyTorch"],
+    "technologies": ["Python", "TensorFlow", "PyTorch"],
     "logo": "logos/UWLogo.png"
   },
   {
     "id": 4,
+    "company": "University of Wisconsin - Madison",
+    "tags": ["Operating Systems"],
+    "role": "Undergraduate Teaching Assistant for CS 354",
+    "duration": "Jan 2021 - Apr 2021",
+    "description": [
+      "Assisted in CS 354 (C Programming and Computer Systems) course.",
+      "Led review sessions, office hours, and developed practice problems for over 500 students."
+    ],
+    "technologies": ["C++", "C"],
+    "logo": "logos/UWLogo.png"
+  },
+  {
+    "id": 5,
     "company": "Division of Information Technology, UW-Madison",
-    "tags": ["Cloud", "Integration", "Backend"],
+    "tags": ["DevOps", "Integration", "Cloud"],
     "role": "Enterprise Integration Intern",
     "duration": "Feb 2021 - Mar 2021",
     "description": [
@@ -52,7 +65,7 @@
       "Collaborated with campus partners to document business requirements and translate them into technical integration solutions",
       "Provided end-user support and contributed to internal and external documentation"
     ],
-    "technologies": ["Cloud Technologies", "REST APIs", "Integration Platforms"],
+    "technologies": ["REST APIs", "Python"],
     "logo": "logos/UWLogo.png"
   }
 ]
