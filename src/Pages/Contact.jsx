@@ -102,7 +102,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-3 py-1.5 md:py-2 rounded-lg border border-gray-300 focus:border-[#ba7893] focus:outline-none transition-colors bg-white/60 text-sm"
-                    placeholder="connect.with.me.ananya@gmail.com"
+                    placeholder="Your email address"
                   />
                 </div>
 
